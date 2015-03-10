@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
  * Created by Anirudhan on 2/22/2015.
  * Treasure
  */
-public class Main {
+public class Treasure {
     public static void main(String[] args) throws Exception{
         FastIOReader reader = new FastIOReader();
         String str = reader.nextLine();
