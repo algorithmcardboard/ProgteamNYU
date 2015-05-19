@@ -1,12 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
  * Created by anirudhan on 4/10/15.
  */
-public class Main {
+public class RedundancyDepartment {
     static class FastIOReader {
         BufferedReader br;
         StringTokenizer st;
@@ -60,8 +63,25 @@ public class Main {
 
     public static void main(String[] args){
         FastIOReader reader = new FastIOReader();
-        int numLines = reader.nextInt();
 
+        Map<Integer,Integer> values = new LinkedHashMap<Integer, Integer>();
+
+        String str = reader.nextLine();
+        while(!str.equals("")) {
+            StringTokenizer st = new StringTokenizer(str);
+            while (st.hasMoreTokens()) {
+                int val = Integer.parseInt(st.nextToken());
+                if (!values.containsKey(val)) {
+                    values.put(val, 0);
+                }
+                values.put(val, values.get(val) + 1);
+            }
+            str = reader.nextLine();
+        }
+
+        for (Map.Entry<Integer, Integer> entry : values.entrySet()) {
+            System.out.println(entry.getKey()+ " "+ entry.getValue());
+        }
 
     }
 }

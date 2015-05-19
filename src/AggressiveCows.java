@@ -1,12 +1,14 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
- * Created by anirudhan on 4/10/15.
+ * Created by Anirudhan on 3/7/2015.
  */
-public class Main {
+public class AggressiveCows {
     static class FastIOReader {
         BufferedReader br;
         StringTokenizer st;
@@ -58,10 +60,34 @@ public class Main {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         FastIOReader reader = new FastIOReader();
-        int numLines = reader.nextInt();
 
+        int testCases = reader.nextInt();
+        while(testCases-- > 0){
+            int N = reader.nextInt();
+            int C = reader.nextInt();
 
+            int factor = N/C + ((N-C)%C>0?1:0);
+            if(C == 2){
+                factor = N-1;
+            }
+
+            int[] stalls = new int[N];
+
+            for(int i = 0; i < N; i++){
+                stalls[i] = reader.nextInt();
+            }
+
+            Arrays.sort(stalls);
+
+            int min = N;
+            for(int i = factor; i < N; i = i+factor){
+                if(stalls[i] - stalls[i - factor] < min){
+                    min = stalls[i] - stalls[i - factor];
+                }
+            }
+            System.out.println(min);
+        }
     }
 }
